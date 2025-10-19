@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Data Submission</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'space-dark': '#0f172a', // Slate-900
+                        'space-light': '#334155', // Slate-700
+                        'accent': '#6366f1', // Indigo-500
+                        'accent-hover': '#4f46e5', // Indigo-600
+                        'text-light': '#f8fafc', // Slate-50
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for the logo animation and full screen landing page */
+        #landing-page {
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+        .logo-text {
+            /* Simple pulse animation for the team logo/title */
+            animation: pulse 2s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-space-dark font-sans text-text-light min-h-screen flex items-center justify-center p-4">
+
+    <div id="app-container" class="w-full max-w-6xl">
+
+        <div id="landing-page" class="absolute inset-0 flex flex-col items-center justify-center bg-space-dark/95 z-10 p-4 transition-opacity duration-500" onclick="showForm()">
+            <div class="text-center">
+                <img src="https://i.ibb.co/9HXP1LtQ/Gemini-Generated-Image-4md9cw4md9cw4md9-1-Picsart-Ai-Image-Enhancer-Picsart-Ai-Image-Enhancer-remove.png" 
+                    alt="Team Logo" 
+                    class="w-24 h-24 mx-auto mb-4 logo-text rounded-full shadow-lg border-2 border-accent object-cover">
+
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white logo-text">CYGNUS</h1>
+                <p class="mt-4 text-xl md:text-2xl text-accent/80 tracking-wide">Click anywhere to begin Kepler Data Submission</p>
+                <p class="mt-8 text-sm text-gray-400">Powered by Team cygnus.</p>
+            </div>
+        </div>
+
+        <div id="form-page" class="hidden bg-space-light p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto my-8 border border-accent/30 transition-all duration-500 transform scale-95 opacity-0">
+            <h2 class="text-3xl font-bold mb-6 text-center text-white border-b border-accent/50 pb-2">Exoplanet Candidate Details (KOI)</h2>
+            <p class="text-gray-300 mb-6 text-center">Please enter the 17 features below for analysis. Input fields now accept scientific notation (e.g., $1.2e-4$).</p>
+
+            <form id="data-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_fpflag_nt</span>
+                    <input type="text" maxlength="20" id="koi_fpflag_nt" name="koi_fpflag_nt" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_fpflag_ss</span>
+                    <input type="text" maxlength="20" id="koi_fpflag_ss" name="koi_fpflag_ss" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_fpflag_co</span>
+                    <input type="text" maxlength="20" id="koi_fpflag_co" name="koi_fpflag_co" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_fpflag_ec</span>
+                    <input type="text" maxlength="20" id="koi_fpflag_ec" name="koi_fpflag_ec" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_period</span>
+                    <input type="text" maxlength="20" id="koi_period" name="koi_period" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_time0bk</span>
+                    <input type="text" maxlength="20" id="koi_time0bk" name="koi_time0bk" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_impact</span>
+                    <input type="text" maxlength="20" id="koi_impact" name="koi_impact" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_duration</span>
+                    <input type="text" maxlength="20" id="koi_duration" name="koi_duration" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_depth</span>
+                    <input type="text" maxlength="20" id="koi_depth" name="koi_depth" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_prad</span>
+                    <input type="text" maxlength="20" id="koi_prad" name="koi_prad" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_teq</span>
+                    <input type="text" maxlength="20" id="koi_teq" name="koi_teq" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_insol</span>
+                    <input type="text" maxlength="20" id="koi_insol" name="koi_insol" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_model_snr</span>
+                    <input type="text" maxlength="20" id="koi_model_snr" name="koi_model_snr" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_tce_plnt_num</span>
+                    <input type="text" maxlength="20" id="koi_tce_plnt_num" name="koi_tce_plnt_num" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_steff</span>
+                    <input type="text" maxlength="20" id="koi_steff" name="koi_steff" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_slogg</span>
+                    <input type="text" maxlength="20" id="koi_slogg" name="koi_slogg" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+                <label class="block">
+                    <span class="text-gray-200 text-sm">koi_srad</span>
+                    <input type="text" maxlength="20" id="koi_srad" name="koi_srad" required inputmode="decimal"
+                            class="mt-1 block w-full rounded-md border-gray-600 bg-space-dark text-white p-3 focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50 transition duration-150">
+                </label>
+
+
+                <div class="sm:col-span-2 lg:col-span-3 pt-4">
+                    <button type="submit" id="submit-button"
+                            class="w-full bg-accent hover:bg-accent-hover text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-accent focus:ring-opacity-70 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Submit Data & Get Prediction
+                    </button>
+                    <div id="loading-spinner" class="mt-4 text-center hidden">
+                        <svg class="animate-spin h-5 w-5 text-accent inline-block mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending data...
+                    </div>
+                    <div id="response-message" class="mt-4 p-4 rounded-lg text-center font-semibold hidden transition duration-300">
+                        </div>
+                    <div id="prediction-result" class="mt-4 p-4 rounded-lg text-center font-bold text-lg bg-accent/20 text-accent hidden transition duration-300">
+                        </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        const fieldNames = [
+            'koi_fpflag_nt', 'koi_fpflag_ss', 'koi_fpflag_co', 'koi_fpflag_ec',
+            'koi_period', 'koi_time0bk', 'koi_impact', 'koi_duration', 'koi_depth',
+            'koi_prad', 'koi_teq', 'koi_insol', 'koi_model_snr', 'koi_tce_plnt_num',
+            'koi_steff', 'koi_slogg', 'koi_srad'
+        ];
+        const FORM_ENDPOINT = '/api/submit_data'; // The target URL for your Flask POST route
+
+        const landingPage = document.getElementById('landing-page');
+        const formPage = document.getElementById('form-page');
+        const dataForm = document.getElementById('data-form');
+        const submitButton = document.getElementById('submit-button');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const responseMessage = document.getElementById('response-message');
+
+        /**
+         * Switches the view from the landing page to the form with a fade-out/fade-in effect.
+         */
+        function showForm() {
+            // Hide the landing page
+            landingPage.style.opacity = '0';
+            
+            setTimeout(() => {
+                landingPage.classList.add('hidden');
+                formPage.classList.remove('hidden');
+
+                // Show the form with transition
+                setTimeout(() => {
+                    formPage.style.opacity = '1';
+                    formPage.style.transform = 'scale(1)';
+                }, 50); 
+            }, 500); 
+        }
+
+        /**
+         * Collects form data and converts it into a JSON object.
+         * Note: Since inputs are now type="text" to allow scientific notation (e.g., 1e+5), 
+         * we MUST use parseFloat() to convert the string input to a numerical float 
+         * before sending it to the backend for ML processing.
+         * @returns {object} The JSON payload with all 17 fields as floating-point numbers.
+         */
+        function collectFormData() {
+            const data = {};
+            fieldNames.forEach(name => {
+                const inputElement = document.getElementById(name);
+                // Convert string input (which may contain 'e' for scientific notation) to a float 
+                const value = parseFloat(inputElement.value);
+
+                // If parseFloat results in NaN (e.g., user entered a non-numeric string), 
+                // we should send 0 or ideally trigger an error here, but for now, we'll send the NaN 
+                // and let the backend handle the type checking or error if needed. 
+                // The Flask backend expects numerical data.
+                data[name] = isNaN(value) ? null : value; 
+            });
+            return data;
+        }
+
+        /**
+         * Displays a transient message and a separate prediction result to the user. (UPDATED)
+         * @param {string} message - The text to display.
+         * @param {boolean} isSuccess - True for success (green), false for error (red).
+         * @param {string|null} [prediction=null] - The prediction text to display separately.
+         */
+        function displayMessage(message, isSuccess, prediction = null) {
+            // 1. Handle the main response message
+            responseMessage.textContent = message;
+            responseMessage.classList.remove('hidden', 'bg-red-700/20', 'text-red-300', 'bg-green-700/20', 'text-green-300');
+
+            if (isSuccess) {
+                responseMessage.classList.add('bg-green-700/20', 'text-green-300');
+            } else {
+                responseMessage.classList.add('bg-red-700/20', 'text-red-300');
+            }
+            
+            // 2. Handle the specific prediction display
+            const predictionResultDiv = document.getElementById('prediction-result');
+            if (prediction) {
+                predictionResultDiv.textContent = `ANALYSIS RESULT: ${prediction}`;
+                predictionResultDiv.classList.remove('hidden');
+            } else {
+                predictionResultDiv.classList.add('hidden');
+            }
+
+            // Hide the messages after 8 seconds
+            setTimeout(() => {
+                responseMessage.classList.add('hidden');
+                predictionResultDiv.classList.add('hidden'); // Also hide the prediction
+            }, 8000);
+        }
+
+        /**
+         * Handles the form submission: Collects data, formats JSON, and sends via fetch.
+         */
+        dataForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+
+            const dataPayload = collectFormData();
+            const jsonPayload = JSON.stringify(dataPayload, null, 2);
+
+            // Basic client-side check for non-numeric input before sending
+            const hasInvalidInput = Object.values(dataPayload).some(value => value === null);
+            if (hasInvalidInput) {
+                displayMessage("Please ensure all fields contain valid numerical input (including scientific notation).", false);
+                return;
+            }
+
+            // UI state: Disable button, show loading
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            loadingSpinner.classList.remove('hidden');
+            document.getElementById('prediction-result').classList.add('hidden'); // Hide previous prediction
+            responseMessage.classList.add('hidden');
+
+            try {
+                // --- Start POST request to the Flask endpoint ---
+                const response = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: jsonPayload,
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    // UPDATED: Pass the prediction from the server response to the displayMessage function
+                    displayMessage(`SUCCESS! Data sent and processed.`, true, result.prediction); 
+                } else {
+                    // Handle server-side errors (e.g., status 400 or 500)
+                    const errorJson = await response.json(); // Assuming error response is JSON
+                    const errorMsg = errorJson.error || `Server responded with status ${response.status}.`;
+                    displayMessage(`ERROR! ${errorMsg}`, false);
+                    console.error("Server Error Detail:", errorJson);
+                }
+
+            } catch (error) {
+                // Handle network errors (e.g., Flask server is not running)
+                console.error('Fetch Error:', error);
+                
+                // For demonstration since the Flask server isn't running in this environment:
+                displayMessage(`(NETWORK ERROR) Could not reach the server. Check console.`, false);
+                console.log("JSON Payload ready to be sent to Flask backend at:", FORM_ENDPOINT);
+                console.log(jsonPayload); 
+
+            } finally {
+                // UI state: Re-enable button, hide loading
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Data & Get Prediction';
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
